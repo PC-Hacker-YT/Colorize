@@ -1,3 +1,18 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Icon=Icon.ico
+#AutoIt3Wrapper_Outfile=Colorize_x86.exe
+#AutoIt3Wrapper_Outfile_x64=Colorize_x64.exe
+#AutoIt3Wrapper_Compile_Both=y
+#AutoIt3Wrapper_UseX64=y
+#AutoIt3Wrapper_Res_Description=Colorizer-Tool
+#AutoIt3Wrapper_Res_Fileversion=1.0.0.0
+#AutoIt3Wrapper_Res_ProductName=Colorize
+#AutoIt3Wrapper_Res_ProductVersion=1.0
+#AutoIt3Wrapper_Res_CompanyName=Jonas
+#AutoIt3Wrapper_Res_LegalCopyright=2020, Jonas
+#AutoIt3Wrapper_Res_Language=1033
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+
 #NoTrayIcon
 #include <GUIConstantsEx.au3>
 #include <EditConstants.au3>
