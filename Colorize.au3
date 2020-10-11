@@ -5,9 +5,9 @@
 #AutoIt3Wrapper_Compile_Both=y
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Description=Colorizer-Tool
-#AutoIt3Wrapper_Res_Fileversion=1.0.0.0
+#AutoIt3Wrapper_Res_Fileversion=1.1.0.0
 #AutoIt3Wrapper_Res_ProductName=Colorize
-#AutoIt3Wrapper_Res_ProductVersion=1.0
+#AutoIt3Wrapper_Res_ProductVersion=1.1
 #AutoIt3Wrapper_Res_CompanyName=Jonas
 #AutoIt3Wrapper_Res_LegalCopyright=2020, Jonas
 #AutoIt3Wrapper_Res_Language=1033
@@ -17,6 +17,11 @@
 #include <GUIConstants.au3>
 #include <GUIConstantsEx.au3>
 #include <EditConstants.au3>
+
+if @OSVersion <> "WIN_10" Then
+    MsgBox(16, "Colorize", "This Tool is for Windows 10 only. You are using " & @OSVersion & ".")
+    Exit
+EndIf
 
 $Red = 00
 $Green = 00
@@ -64,13 +69,18 @@ While 1
                 $Red = Hex(Random(GUICtrlRead($idInputRedMin), GUICtrlRead($idInputRedMax), 1), 2)
                 $Green = Hex(Random(GUICtrlRead($idInputGreenMin), GUICtrlRead($idInputGreenMax), 1), 2)
                 $Blue = Hex(Random(GUICtrlRead($idInputBlueMin), GUICtrlRead($idInputBlueMax), 1), 2)
+
                 RegWrite("HKCU\Software\Microsoft\Windows\DWM", "ColorPrevalence", "REG_DWORD", "1")
+                $err1 = @error
                 RegWrite("HKCU\Software\Microsoft\Windows\DWM", "AccentColor", "REG_DWORD", Dec("ff" & $Blue & $Green & $Red))
+                $err2 = @error
                 RegWrite("HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent", "AccentColorMenu", "REG_DWORD", Dec("ff" & $Blue & $Green & $Red))
-                RegWrite("HKCU\Software\Microsoft\Windows\DWM", "ColorizationAfterglow", "REG_DWORD", Dec("c4" & $Red & $Green & $Blue))
-                RegWrite("HKCU\Software\Microsoft\Windows\DWM", "ColorizationColor", "REG_DWORD", Dec("c4" & $Red & $Green & $Blue))
-                
-                MsgBox(64, "Colorize", "Done!")
+                $err3 = @error
+                if $err1 = 0 And $err2 = 0 And $err3 = 0 Then
+                    MsgBox(64, "Colorize", "Color set to #" & $Red & $Green & $Blue)
+                Else
+                    MsgBox(16, "Colorize", "Error writing the values to the registry! " & "Error-code: " & $err1 & " " & $err2 & " " & $err3)
+                EndIf
             EndIf
 
 
