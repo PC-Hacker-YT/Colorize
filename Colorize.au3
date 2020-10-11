@@ -14,6 +14,7 @@
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
 #NoTrayIcon
+#include <GUIConstants.au3>
 #include <GUIConstantsEx.au3>
 #include <EditConstants.au3>
 
@@ -24,7 +25,7 @@ $Red = Hex(Random(0, 255, 1), 2)
 $Green = Hex(Random(0, 255, 1), 2)
 $Blue = Hex(Random(0, 255, 1), 2)
 
-$idFormMain = GUICreate("Colorize", 130, 175)
+$idFormMain = GUICreate("Colorize", 130, 205, Default, Default, $DS_MODALFRAME)
 $idLabelMin = GUICtrlCreateLabel("Min", 48, 8, 21, 17)
 $idLabelMax = GUICtrlCreateLabel("Max", 88, 8, 24, 17)
 
@@ -73,7 +74,7 @@ While 1
             EndIf
 
 
-		Case $GUI_EVENT_CLOSE, $idButtonExit
+		Case $idButtonExit
 			Exit
 
 	EndSwitch
