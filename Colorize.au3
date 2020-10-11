@@ -63,11 +63,12 @@ While 1
                 $Red = Hex(Random(GUICtrlRead($idInputRedMin), GUICtrlRead($idInputRedMax), 1), 2)
                 $Green = Hex(Random(GUICtrlRead($idInputGreenMin), GUICtrlRead($idInputGreenMax), 1), 2)
                 $Blue = Hex(Random(GUICtrlRead($idInputBlueMin), GUICtrlRead($idInputBlueMax), 1), 2)
-                RegWrite("HKCU\Software\Microsoft\Windows\DWM", "EnableWindowColorization", "REG_DWORD", "1")
                 RegWrite("HKCU\Software\Microsoft\Windows\DWM", "ColorPrevalence", "REG_DWORD", "1")
                 RegWrite("HKCU\Software\Microsoft\Windows\DWM", "AccentColor", "REG_DWORD", Dec("ff" & $Blue & $Green & $Red))
+                RegWrite("HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent", "AccentColorMenu", "REG_DWORD", Dec("ff" & $Blue & $Green & $Red))
                 RegWrite("HKCU\Software\Microsoft\Windows\DWM", "ColorizationAfterglow", "REG_DWORD", Dec("c4" & $Red & $Green & $Blue))
                 RegWrite("HKCU\Software\Microsoft\Windows\DWM", "ColorizationColor", "REG_DWORD", Dec("c4" & $Red & $Green & $Blue))
+                
                 MsgBox(64, "Colorize", "Done!")
             EndIf
 
